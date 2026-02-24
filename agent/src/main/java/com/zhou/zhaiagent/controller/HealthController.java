@@ -1,5 +1,7 @@
 package com.zhou.zhaiagent.controller;
 
+import com.zhou.common.result.BaseResponse;
+import com.zhou.common.result.GraceJSONResult;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,8 +15,8 @@ public class HealthController {
 
     @Operation(summary = "测试检查接口")
     @GetMapping("/check")
-    public String checkHealth() {
-        return "Love You, Ameath";
+    public BaseResponse<String> checkHealth() {
+        return GraceJSONResult.ok("Love you, Ameath");
     }
 
 }

@@ -40,16 +40,28 @@
     <properties>
         <java.version>21</java.version>
         <hutool.version>5.8.38</hutool.version>
-        <knife4j.version>4.4.0</knife4j.version>
         <lombok.version>1.18.36</lombok.version>
+        <!-- SpringDoc版本：2.8.4+ 兼容 Spring Framework 6.2.x -->
+        <springdoc.version>2.8.4</springdoc.version>
     </properties>
 
     <dependencyManagement>
         <dependencies>
+            <!-- 统一指定springdoc版本，兼容Spring Framework 6.2.x -->
             <dependency>
-                <groupId>com.github.xiaoymin</groupId>
-                <artifactId>knife4j-openapi3-jakarta-spring-boot-starter</artifactId>
-                <version>${knife4j.version}</version>
+                <groupId>org.springdoc</groupId>
+                <artifactId>springdoc-openapi-starter-common</artifactId>
+                <version>${springdoc.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springdoc</groupId>
+                <artifactId>springdoc-openapi-starter-webmvc-api</artifactId>
+                <version>${springdoc.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springdoc</groupId>
+                <artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
+                <version>${springdoc.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
@@ -68,6 +80,12 @@
             <optional>true</optional>
             <version>${lombok.version}</version>
         </dependency>
+
+        <dependency>
+            <groupId>jakarta.servlet</groupId>
+            <artifactId>jakarta.servlet-api</artifactId>
+            <scope>provided</scope>
+        </dependency>
     </dependencies>
 
 
@@ -77,11 +95,15 @@
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-compiler-plugin</artifactId>
+                    <version>3.14.1</version>
                     <configuration>
+                        <source>21</source>
+                        <target>21</target>
                         <annotationProcessorPaths>
                             <path>
                                 <groupId>org.projectlombok</groupId>
                                 <artifactId>lombok</artifactId>
+                                <version>${lombok.version}</version>
                             </path>
                         </annotationProcessorPaths>
                     </configuration>
