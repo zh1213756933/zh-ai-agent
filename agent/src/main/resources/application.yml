@@ -1,6 +1,11 @@
 spring:
+  main:
+    allow-bean-definition-overriding: true
   application:
     name: zh-ai-agent
+  ai:
+    dashscope:
+      api-key: 'sk-280dabc277984bf7a8561011f7e3bf8c'
 
 server:
   port: 8123
